@@ -1,0 +1,184 @@
+/*General*/
+.displaynone{
+    display:none;
+}
+
+#playerContain{
+    display:none;
+}
+
+.glyphicon { 
+    cursor: pointer; 
+}
+
+
+
+/*Modals*/
+a.close-modal {
+    margin: 20px;
+}
+
+
+
+
+/*Header CSS*/
+#navleft{
+    margin-right:15px;
+}
+
+#searchform{
+    border: 1px solid #959595;
+    margin-right: 20px;
+    padding:0px;
+    background-color: black; 
+    
+}
+
+
+#searchform input, #searchform button{
+    background: transparent;
+    border:none;
+    color:white;
+}
+
+#searchlogoform{
+    color: white;
+}
+
+
+#addPlaylistNav{
+    margin-top: 10px;
+}
+
+#butRight{
+
+        float: right;
+        margin-right: 10%;
+}
+
+
+
+
+/*PLAYER CSS*/
+
+#theplayer{
+   border: 1px solid blue;
+ }
+
+/*Left side of player*/
+#playerincontrols{
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.68), 
+        rgba(255, 255, 255, 0.85)
+      ), url("../images/backgrounds/piano-1655558_640.jpg");
+    background-repeat: no-repeat;
+    padding-top: 25px;
+    padding-bottom: 20px;
+    border-radius: 150px;
+    
+
+}
+
+#playerList {
+    text-align:left!important;
+}
+
+/*Right side of player*/
+#playeroutcontrols{
+    background-color: white;
+    padding-top: 50px;
+}
+
+#playerincontrols{
+    text-align: center;
+}
+
+/*Glyphicons of player*/
+#playeroutcontrols i, #rotatingImgContainer i{
+    background-color:#B8B8B8;
+    padding: 10px;
+    border-radius: 22px; 
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+#playeroutcontrols i:hover, #rotatingImgContainer i:hover{
+    background-color:#6D6D7A;
+
+
+}
+
+#rotatingImgContainer{
+
+/*     height:150px!important;
+    width:150px!important; */
+    height:150px;
+    padding-top: 50px;
+    border: black;
+    border-radius: 50px;
+    background-image: url("https://www.apachefriends.org/images/stack-icons-fbb40c74.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; 
+}
+
+
+
+
+
+/*Circles*/
+
+.circle {
+    display:inline-block;
+    width: 150px;
+    height:300px;
+    border: 1px solid black;
+    margin: 20px;
+}
+
+.maincirclecontent{
+    height:150px;
+    width:150px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 140px;
+}
+
+
+.circlecontrol{
+    text-align: center;
+}
+
+.circlecontrol i {
+    background-color: rgb(51, 51, 51);
+    padding: 6px;
+    border-radius: 30px;
+    color: rgb(177, 177, 177);
+}
+
+.circlecontrol i:hover {
+    background-color:#6D6D7A;
+}
+
+.circlecontrol.play i{
+    font-size: 21px;
+    text-align:center;
+}
+
+.circletitle {
+    background-color:white;
+}
+
+
+/*First Add Songs Modal*/
+#imageView{
+    width: 150px!important;
+    height: 150px!important;
+    background-position: center;
+    background-size: contain;
+
+}
+
+
+
