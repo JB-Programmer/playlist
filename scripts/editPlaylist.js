@@ -3,11 +3,7 @@ function editPlaylist(id){
     $('#editPlaylistModal').modal();
     chaim.getPlaylist(fillEditModal, id);
     
-/*     //Upload the playlists info
-    $('#wrapper').html('');
-    chaim.getPlaylists(renderData);
- */
-    
+
        
 }
 
@@ -29,6 +25,10 @@ function fillEditModal(thelist){
         chaim.updatePlaylist(idWorkingNow, newPlaylistData);
        
     });
+
+    setTimeout(appendPlaylists, 1000);
+
+    
    
    
 }

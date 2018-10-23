@@ -12,15 +12,15 @@ function renderData(playlists){
         let name = item.name;
         let imageurl = item.image; 
             $('#wrapper').append(`
-                <div class='circle' id='` + id + `'>
-                    <h2 class='circletitle'>`+name+`</h2>
+                <div class='col-md-2 circle' id='` + id + `'>
+                    <span id="circletiteContainer"><h2 class='circletitle'>`+name+`</h2></span>
                     <div class='maincirclecontent' style="background-image: url('`+ imageurl +`'); background-repeat: no-repeat">
                         <div class='circlecontrol'>
-                            <i class="glyphicon glyphicon-remove deletelisticon" title="Delete ` + name + ` from database"></i>
-                            <i class="glyphicon glyphicon-pencil editlisticon" title="Edit ` + name + `"></i>
+                            <i class="glyphicon glyphicon-trash deletelisticon isHidden" title="Delete ` + name + ` from database"></i>
+                            <i class="glyphicon glyphicon-pencil editlisticon isHidden" title="Edit ` + name + `"></i>
                         </div>
                         <div class='circlecontrol play'>
-                            <span class="playnow"><i class="glyphicon glyphicon-play" title="Play ` + name + `" id="playlisticon"></i><span>
+                            <span class="playnow"><i class="glyphicon glyphicon-play isHidden" title="Play ` + name + `" id="playlisticon"></i><span>
                         </div>
                         
                    
@@ -47,8 +47,23 @@ function renderData(playlists){
                 editPlaylist(id);
             });
 
+            $('.circletitle').arctext({radius:110});
+
+
             
     }
+
+    $( ".maincirclecontent" ).mouseover(function() {
+        $( 'i', this ).removeClass('isHidden');
+
+    });
+
+    $( ".maincirclecontent" ).mouseout(function() {
+        $( 'i', this ).addClass('isHidden');
+
+    });
+
+
     var strplaylists = JSON.stringify(playlists);
     console.log("These are all the -playlists-:<br>" + strplaylists);
     console.log("Ahora sin stringify");

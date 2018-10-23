@@ -1,31 +1,120 @@
-/* function getLists(){
-    var mainservice = new mainPlaylistService();
-    mainservice.getPlaylists(showAll);
-}
+var chaim = new mainPlaylistService();
 
-function showAll(allPlaylists){
-    for(var playlist of allPlaylists){
-        var $theId= playlist.id;
-        var $theName = playlist.name;
-        var $theImageUrl = playlist.image;
-        $('#maincontent').append(`
-            <div>Este es el id:`+  $theId+ `</div>
-            <div> Esta es la direccion de la imagen` +$theImageUrl+`</div>
-            <div> Este es el nombre` + $theName
-        
-        
-        
-        
-        );
+
+function mainPlaylistService(){
+    this.getPlaylists =  function(callback){
+        $.ajax({
+            url: "./api/playlist",
+            type:"Get",
+            contentType: "application/json",
+            success: function(resp, status, xhr){
+                callback(resp.data);
+
+               
+            },
+            complete: function(jqXHR, estado){
+                console.log("Ajax getPlayLists Has been executed");
+            },
+            error: function(xhr, estado, error){
+                console.log("Error retrieving  playlists: " + error);
+            }
+        });
+    };
+
+    this.getPlaylist =  function(callback, id){
+        $.ajax({
+            url: "./api/playlist/"+id,
+            type:"Get",
+            contentType: "application/json",
+            success: function(resp, status, xhr){
+                callback(resp.data);
+            },
+            complete: function(jqXHR, estado){
+                console.log("Ajax getPlayList has been executed")
+            },
+            error: function(xhr, estado, error){
+                console.log("Error retrieving one playlist: " + error);
+            }
+        });
+    };
+
+    this.getPlaylistSongs =  function(callback, id){
+        $.ajax({
+            url: "./api/playlist/"+id+"/songs",
+            type:"Get",
+            contentType: "application/json",
+            success: function(resp, status, xhr){
+                callback(resp.data);
+            },
+            complete: function(jqXHR, estado){
+                console.log("Ajax getPlayListSongs has been executed");
+            },
+            error: function(xhr, estado, error){
+                console.log("Error retrieving songs of this playlist: " + error);
+            }
+        });
+    };
+
+    this.createPlaylist =  function(playlist, callback){
+        $.ajax({
+            url: "./api/playlist",
+            type:"Post",
+            data: playlist,
+            success: function(resp, status, xhr){
+                callback();
+            },
+            complete: function(jqXHR, estado){
+                console.log("Ajax addPlaylist has been executed");
+                
+            },
+            error: function(xhr, estado, error){
+                console.log("Error creating playlist" + error);
+            }
+        });
+    };
+
+    this.updatePlaylist = function (id, info) {
+        $.ajax({
+            type: "Post",
+            url: "./api/playlist/" + id,
+            data: info,
+            success: function (result, status, xhr) {
+                console.log('Playlist updated successfuly');
+               
+            }
+        });
     }
 
+    this.updateSongs = function (id, songs, callback) {
+        $.ajax({
+            url: "./api/playlist/" + id + "/songs",
+            type: "Post",
+            data: songs,
+            success: function (resp, status, xhr) {
+                callback();
+            },
+            complete: function(jqXHR, estado){
+                console.log("Ajax updateSongs has been executed");
+            },
+        });
+    };
 
-};
- */
+    this.deletePlaylist = function (id, callback) {
+        $.ajax({
+            url: "./api/playlist/" + id,
+            type: "Delete",
+            success: function (resp, status, xhr) {
+                callback();
+                appendPlaylists();
+           },
+           complete: function(jqXHR, estado){
+               console.log("Ajax deletePlaylist has been executed");
+           },
+        });
+    };
 
+}
 
-
-var chaim = new mainPlaylistService();
 
 
 //Get All The lists WORKS!
@@ -122,127 +211,3 @@ function nothing(){
  */
 
 
-
-
-
-function mainPlaylistService(){
-    this.getPlaylists =  function(callback){
-        $.ajax({
-            url: "./api/playlist",
-            type:"Get",
-            contentType: "application/json",
-            success: function(resp, status, xhr){
-                callback(resp.data);
-
-               
-            },
-            complete: function(jqXHR, estado){
-                console.log("Ajax getPlayLists Has been executed");
-            },
-            error: function(xhr, estado, error){
-                console.log("Error retrieving  playlists: " + error);
-            }
-        });
-    };
-
-
-
-    this.getPlaylist =  function(callback, id){
-        $.ajax({
-            url: "./api/playlist/"+id,
-            type:"Get",
-            contentType: "application/json",
-            success: function(resp, status, xhr){
-                callback(resp.data);
-            },
-            complete: function(jqXHR, estado){
-                console.log("Ajax getPlayList has been executed")
-            },
-            error: function(xhr, estado, error){
-                console.log("Error retrieving one playlist: " + error);
-            }
-        });
-    };
-
-
-    
-    this.getPlaylistSongs =  function(callback, id){
-        $.ajax({
-            url: "./api/playlist/"+id+"/songs",
-            type:"Get",
-            contentType: "application/json",
-            success: function(resp, status, xhr){
-                callback(resp.data);
-            },
-            complete: function(jqXHR, estado){
-                console.log("Ajax getPlayListSongs has been executed");
-            },
-            error: function(xhr, estado, error){
-                console.log("Error retrieving songs of this playlist: " + error);
-            }
-        });
-    };
-
-    this.createPlaylist =  function(playlist, callback){
-        $.ajax({
-            url: "./api/playlist",
-            type:"Post",
-            data: playlist,
-            success: function(resp, status, xhr){
-                callback();
-            },
-            complete: function(jqXHR, estado){
-                console.log("Ajax addPlaylist has been executed");
-                
-            },
-            error: function(xhr, estado, error){
-                console.log("Error creating playlist" + error);
-            }
-        });
-    };
-
-
-    
-
-
-    this.updatePlaylist = function (id, info) {
-        $.ajax({
-            type: "Post",
-            url: "./api/playlist/" + id,
-            data: info,
-            success: function (result, status, xhr) {
-                console.log('Playlist updated successfuly');
-               
-            }
-        });
-    }
-
-    this.updateSongs = function (id, songs, callback) {
-        $.ajax({
-            url: "./api/playlist/" + id + "/songs",
-            type: "Post",
-            data: songs,
-            success: function (resp, status, xhr) {
-                callback();
-            },
-            complete: function(jqXHR, estado){
-                console.log("Ajax updateSongs has been executed");
-            },
-        });
-    };
-
-
-    this.deletePlaylist = function (id, callback) {
-        $.ajax({
-            url: "./api/playlist/" + id,
-            type: "Delete",
-            success: function (resp, status, xhr) {
-                callback();
-           },
-           complete: function(jqXHR, estado){
-               console.log("Ajax deletePlaylist has been executed");
-           },
-        });
-    };
-
-}
